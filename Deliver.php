@@ -8,9 +8,9 @@ class Deliver extends HttpCurl
 {
 	private $code = [];
 
-	private $url = "https://zhao.b2c.omnixdb.com/ApiQueue/DirectDelivery";
+	private $url = "https://xxxxx";
 
-	public function __construct( $code ) 
+	public function __construct( $code )
 	{
 		$this->code = $code;
 	}
