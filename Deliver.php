@@ -15,7 +15,6 @@ class Deliver extends HttpCurl
 		$this->code = $code;
 	}
 
-
 	public function deliver()
 	{
 		$code = [ 'deliveryCode' => implode(',', $this->code) ];
