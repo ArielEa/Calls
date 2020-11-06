@@ -1,5 +1,7 @@
 <?php
 
+namespace Call;
+
 trait CrossXML
 {
 	public function CrossXML()

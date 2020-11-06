@@ -3,34 +3,51 @@
 
 <request>
   <deliveryOrder>
-    <deliveryOrderCode>200728236608483</deliveryOrderCode>
-    <deliveryOrderId>200728236608483</deliveryOrderId>
-    <warehouseCode>shenyi_xdb</warehouseCode>
+    <deliveryOrderCode>200901409035238</deliveryOrderCode>
+    <deliveryOrderId>200901409035238</deliveryOrderId>
+    <warehouseCode>WarehouseNo8</warehouseCode>
     <orderConfirmTime>2020-07-29 00:00:00</orderConfirmTime>
     <orderType>JYCK</orderType>
-    <outBizCode>200728333834886 - </outBizCode>
+    <outBizCode>WarehouseNo8 - </outBizCode>
   </deliveryOrder>
   <packages>
     <package>
-      <logisticsCode>SF</logisticsCode>
-      <expressCode>SF2153763122</expressCode>
-      <weight>315.0000</weight>
+      <logisticsCode>SFTH</logisticsCode>
+      <expressCode>SF1040734748612</expressCode>
+      <weight>0.4890</weight>
       <extendProps>
         <postage>0.0000</postage>
       </extendProps>
       <items>
         <item>
-          <itemCode>FCBH001</itemCode>
-          <quantity>6</quantity>
+          <itemCode>SAJH050</itemCode>
+          <quantity>1</quantity>
+        </item>
+        <item>
+          <itemCode>FAJH057</itemCode>
+          <quantity>1</quantity>
         </item>
       </items>
     </package>
   </packages>
   <orderLines>
     <orderLine>
-      <itemCode>FCBH001</itemCode>
+      <itemCode>SAJH050</itemCode>
       <inventoryType>ZP</inventoryType>
-      <actualQty>2</actualQty>
+      <actualQty>1</actualQty>
+      <batchs>
+        <batch>
+          <batchCode>L128</batchCode>
+          <expireDate>2021-08-07 00:00:00</expireDate>
+          <actualQty>1</actualQty>
+          <inventoryType>ZP</inventoryType>
+        </batch>
+      </batchs>
+    </orderLine>
+    <orderLine>
+      <itemCode>FAJH057</itemCode>
+      <inventoryType>ZP</inventoryType>
+      <actualQty>1</actualQty>
       <batchs>
         <batch>
           <batchCode>L128</batchCode>

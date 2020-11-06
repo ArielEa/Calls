@@ -1,12 +1,14 @@
 <?php
 
+namespace Call;
+
 include_once "HttpCurl.php";
 
 class Deliver extends HttpCurl
 {
 	private $code = [];
 
-	private $url = "xxxxxxxxx/ApiQueue/DirectDelivery";
+	private $url = "https://zhao.b2c.omnixdb.com/ApiQueue/DirectDelivery";
 
 	public function __construct( $code ) 
 	{
@@ -19,12 +21,6 @@ class Deliver extends HttpCurl
 		$code = [ 'deliveryCode' => implode(',', $this->code) ];
 
 		$result = $this->request( $this->url, $code );
-
-		print_r( $result );die;
-
-		die;
-
-		print_r( json_decode( $result, true ) );die;
 
 		return $result;
 	}
@@ -39,6 +35,35 @@ if ( $argc == 1 )  {
 }
 
 unset($argv[0]);
+
+
+// $codes = [];
+
+// $counts = count($codes);
+// $start = 0;
+// $line = 13;
+// $ceil = ceil( $counts / $line );
+
+
+// while ( $ceil > 0 )
+// {
+// 	$arr = $codes;
+
+// 	$array = array_splice( $arr, $start, $line );
+
+// 	// echo $ceil.' : '.$start. '--------->' .$line.PHP_EOL;
+
+
+// 	$deliver = new Deliver( $array );
+
+// 	$res = $deliver->deliver();
+
+// 	$ceil-- ;
+// 	$start += $line;
+
+// }
+
+// die;
 
 $codes = array_values($argv);
 

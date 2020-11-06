@@ -1,0 +1,18 @@
+Parameters:
+  # 请求地址
+  remoteUrl : https://xxxxxx.com/
+  # 请求路由
+  urlRoute : wmsSync
+  # 发货路由
+  deliver : ApiQueue/DirectDelivery
+ # 奇门发送配置
+  QimenUrlConfig:
+    app_key: testerp_appkey
+    customerId: c12222
+    format: xml
+    method: ''
+    sign: 45678987654345678
+    sign_metho: md5
+    timestamp: ''
+    v: 2.0
+    version: 1
