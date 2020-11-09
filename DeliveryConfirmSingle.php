@@ -24,19 +24,30 @@ class DeliveryConfirmSingle extends HttpCurl
     static protected $method = "deliveryorder.confirm";
 
     /**
+     * - [ 获取发送url ]
+     * @return string
+     * @throws \Exception
+     */
+    protected function getSendUrl(): string
+    {
+        $remoteUrl = getParameters('remoteUrl');
+        $qimenUrlConfig = getParameters('QimenUrlConfig');
+        $urlRoute = getParameters('urlRoute');
+        $sendUrl = $remoteUrl.$urlRoute;
+        $qimenUrlConfig['method'] = self::$method;
+        return $sendUrl."?".http_build_query($qimenUrlConfig);
+    }
+
+    /**
      * @return array|bool|mixed
      * @throws \Exception
      */
     public function confirm()
     {
-        $remoteUrl = getParameters('remoteUrl');
-        $qimenUrlConfig = getParameters('QimenUrlConfig');
-
-
-
-        print_r( $qimenUrlConfig );
-        die;
-        return $this->xmlRequest( $this->qimenXML(), 'post' );
+        $url = $this->getSendUrl();
+        $xml = file_get_contents("XML/Qimen.xml");
+//        $data = $this->qimenXML();
+        return $this->sendRequest( $xml, $url, 'post' );
     }
 }
 
