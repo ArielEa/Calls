@@ -2,6 +2,7 @@
 # Author: Ariel < ariel673770@gmail.com >
 
 # 使用方式及参数说明
+    1）、Add new `YAML` file: XML\Parameters.yaml
 	Parameters:
       # 请求地址
       remoteUrl : https://xxxxxxx.com/
