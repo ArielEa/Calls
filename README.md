@@ -6,7 +6,7 @@
           # 请求地址
           remoteUrl : https://xxxxxxx.com/
           # 请求路由
-          urlRoute : wmsSync
+          urlRoute : wms****
           # 发货路由
           deliver : ----- (询问作者)
          # 奇门发送配置
@@ -36,3 +36,19 @@
         帮助： ./console -h
 
     4)、树状结构（文件夹形式）
+    
+    5)、本地需要安装php-zip扩展(ZipArchive)
+        安装方法:
+            wget http://pecl.php.net/get/zip
+            tar -zxvf zip
+            cd zip-1.xxx
+            phpize
+            ./configure
+            make & make install
+            cp -r modules/zip.so ../php/extension/no-debug****/zip.so
+            
+            php.ini   -  where php.ini 或者 php --ini
+            extension=/php/extension/no-debug***/zip.so
+            zlib.output_compression = On
+            
+            apachectl restart

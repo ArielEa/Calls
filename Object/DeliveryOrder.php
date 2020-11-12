@@ -5,9 +5,10 @@ namespace Call\Object;
 include_once DIR_PATH."/HttpCurl/HttpCurl.php";
 include_once DIR_PATH."Enum/Enum.php";
 include_once DIR_PATH."Parameters.php";
+include_once DIR_PATH."/Post/DeliveryPost.php";
 
 use Call\Enum\Enum;
-use Call\Post\EntryOrderPost;
+use Call\Post\DeliveryPost;
 use Call\HttpCurl\HttpCurl;
 
 /**
@@ -34,7 +35,6 @@ class DeliveryOrder extends HttpCurl
     protected function requestData( $method )
     {
         $paraFile = Enum::getPara($method);
-
         return getParameters($method, $paraFile);
     }
 
@@ -45,13 +45,12 @@ class DeliveryOrder extends HttpCurl
      */
     public function confirm($method)
     {
-        echo 123;die;
-
         $xmlData = $this->requestData($method);
+        $req = $this->combineUrl( self::$method )
+            ->postData( $xmlData, new DeliveryPost() );
 
-        print_r( $xmlData );die;
-
-        $req = $this->combineUrl(self::$method)->postData($xmlData, new EntryOrderPost());
+        print_r( $req );
+        die;
 
         $resp = [];
         foreach ( $req as $value ) {
@@ -60,16 +59,15 @@ class DeliveryOrder extends HttpCurl
         }
         return $resp;
 
-
-        $xml = file_get_contents("XML/QimenDeliveryOrder.xml");
-
         return $this->combineUrl(self::$method)->sendRequest($xml, 'post');
     }
 
+    /**
+     * @return string
+     */
     protected function convertXml(): string
     {
-
-        return "";
+        return "123";
     }
 }
 
