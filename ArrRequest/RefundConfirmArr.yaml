@@ -1,0 +1,23 @@
+## 默认支持批量，但是最大数量不能超过10个
+## 需要引入excel用来导入执行
+inStock:
+  0:
+    entryOrderCode: E2020110982903
+      warehouseCode: shenyi_xdb
+      entryOrderType: QTRK
+      products:
+        0:
+          itemCode: FBAV039
+          actualQty: 100
+          inventory: ZP
+          batch: null
+        1:
+          itemCode: FBAV040
+          actualQty: 100
+          inventory: ZP
+          batch: null
+        2:
+          itemCode: FBAV041
+          actualQty: 100
+          inventory: ZP
+          batch: null

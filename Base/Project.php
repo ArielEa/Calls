@@ -32,10 +32,11 @@ if ( !function_exists('convertXml') ) {
     /**
      * - 【 拼接XML(标准) 】
      * @param $param
+     * @param string $specStr
      * @return string
      */
-    function convertXml( $param )
+    function convertXml( $param, $specStr = "orderLine" )
     {
-        return "<?xml version=\"1.0\" encoding=\"utf-8\"?><response>". convertMes( $param, false ) . "</response>";
+        return "<?xml version=\"1.0\" encoding=\"utf-8\"?><response>". convertMes( $param, false, $specStr ) . "</response>";
     }
 }

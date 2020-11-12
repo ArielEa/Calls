@@ -1,8 +1,14 @@
 <?php
 
-namespace Call;
+namespace Call\HttpCurl;
 
-include_once "ApiRequest.php";
+include_once DIR_PATH."/HttpCurl/ApiRequest.php";
+include_once DIR_PATH."Parameters.php";
+include_once DIR_PATH."Enum/Enum.php";
+include_once DIR_PATH."Post/EntryOrderPost.php";
+
+use Call\Enum\Enum;
+use Call\HttpCurl\ApiRequest;
 
 /**
  * 纯发送请求，不加奇门验证请求，但是参数保持一致
@@ -11,10 +17,45 @@ include_once "ApiRequest.php";
  */
 class HttpCurl implements ApiRequest
 {
+    protected $sendUrl = ""; // 发送的url
+
+    /**
+     * @param $method
+     * @return $this
+     * @throws \Exception
+     */
+    public function combineUrl($method): HttpCurl
+    {
+        $methodFile = Enum::getPara();
+        ## todo:: 直接拿取配置参数，不解析
+        $parameters = matchParameters($methodFile);
+        $qimenUrlConfig = $parameters['QimenUrlConfig'];
+        $sendUrl = $parameters['remoteUrl'].$parameters['urlRoute'];
+        $qimenUrlConfig['method'] = $method;
+        $this->sendUrl = $sendUrl."?".http_build_query($qimenUrlConfig);
+        return $this;
+    }
+
+    /**
+     * 获取配置信息
+     * @param $rows
+     * @param $object
+     * @return array
+     */
+    protected function postData($rows, $object): array
+    {
+        $entryPost = [];
+
+        foreach ($rows as $key => $value) {
+            $entryPost[] = $object->request($this->sendUrl, $value, 'post', 'diy');
+        }
+        return $entryPost;
+    }
+
 	public function request( $url, $data, $requestType = 'post' )
 	{
+        $url = $this->sendUrl;
 		$ch = curl_init ();
-
 		curl_setopt ( $ch, CURLOPT_URL, $url );
 		curl_setopt ( $ch, CURLOPT_POST, 1 );
 		curl_setopt ( $ch, CURLOPT_HEADER, 0 );
@@ -31,8 +72,9 @@ class HttpCurl implements ApiRequest
      * @param string $requestType
      * @return bool|string
      */
-	public function sendRequest($data, $url, $requestType = 'get')
+	public function sendRequest($data, $requestType = 'get')
     {
+        $url = $this->sendUrl;
         //初始化curl
         $ch = curl_init();
         //设置超时

@@ -3,7 +3,7 @@
 namespace Call\Request;
 
 include_once 'ResultSet.php';
-include_once '../Base/Project.php';
+include_once DIR_PATH.'/Base/Project.php';
 
 /**
  * - [ 发送请求 ]

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<request>
+    <entryOrder>
+        <entryOrderCode>E2020082044083</entryOrderCode>
+        <warehouseCode>WH42</warehouseCode>
+        <entryOrderId>DB0010000295</entryOrderId>
+        <entryOrderType>DBRK</entryOrderType>
+        <outBizCode>purchase_confirm_DB0010000295</outBizCode>
+        <confirmType>0</confirmType>
+        <status>FULFILLED</status>
+    </entryOrder>
+    <orderLines>
+
+        <orderLine>
+            <itemCode>FAJH016</itemCode>
+            <itemId>SKU0001002924</itemId>
+            <inventoryType>ZP</inventoryType>
+            <actualQty>100000</actualQty>
+            <batchCode>AAAA</batchCode>
+        </orderLine>
+
+    </orderLines>
+</request>

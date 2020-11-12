@@ -8,5 +8,5 @@ namespace Call\Request;
  */
 interface ApiRequestInterface
 {
-	public function request( $url, $postData, $postType = 'post' );
+	public function request( $url, $postData, $postType = 'post', $status = 'diy' );
 }

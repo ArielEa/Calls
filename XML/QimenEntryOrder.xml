@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<request>
+    <entryOrder>
+        <entryOrderCode>E2020110982903</entryOrderCode>
+        <entryOrderId>E2020110982903</entryOrderId>
+        <warehouseCode>shenyi_xdb</warehouseCode>
+        <entryOrderType>QTRK</entryOrderType>
+        <outBizCode>E2020032618394</outBizCode>
+        <confirmType>1</confirmType>
+        <status>FULFILLED</status>
+        <remark/>
+    </entryOrder>
+    <orderLines>
+        <orderLine>
+            <itemId>123</itemId>
+            <itemCode>FBAV039</itemCode>
+            <inventoryType>ZP</inventoryType>
+            <actualQty>90</actualQty>
+            <batchs>
+                <batch>
+                    <batchCode>L128</batchCode>
+                    <productDate>2018-09-18 00:00:00</productDate>
+                    <expireDate>2021-09-17 00:00:00</expireDate>
+                    <actualQty>30000</actualQty>
+                    <inventoryType>ZP</inventoryType>
+                </batch>
+            </batchs>
+        </orderLine>
+        <orderLine>
+            <itemId>123</itemId>
+            <itemCode>FBAV040</itemCode>
+            <inventoryType>ZP</inventoryType>
+            <actualQty>90</actualQty>
+            <batchs>
+                <batch>
+                    <batchCode>L128</batchCode>
+                    <productDate>2018-09-18 00:00:00</productDate>
+                    <expireDate>2021-09-17 00:00:00</expireDate>
+                    <actualQty>30000</actualQty>
+                    <inventoryType>ZP</inventoryType>
+                </batch>
+            </batchs>
+        </orderLine>
+        <orderLine>
+            <itemId>123</itemId>
+            <itemCode>FBAV041</itemCode>
+            <inventoryType>ZP</inventoryType>
+            <actualQty>90</actualQty>
+            <batchs>
+                <batch>
+                    <batchCode>L128</batchCode>
+                    <productDate>2018-09-18 00:00:00</productDate>
+                    <expireDate>2021-09-17 00:00:00</expireDate>
+                    <actualQty>30000</actualQty>
+                    <inventoryType>ZP</inventoryType>
+                </batch>
+            </batchs>
+        </orderLine>
+    </orderLines>
+</request>

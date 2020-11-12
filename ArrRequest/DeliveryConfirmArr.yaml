@@ -1,0 +1,34 @@
+## 默认支持批量，但是最大数量不能超过10个
+## 需要引入excel用来导入执行
+delivery:
+  0:
+    deliveryOrder:
+      deliveryOrderCode: 201105220000001
+      deliveryOrderId: 201105220000001
+      warehouseCode: shenyi_xdb
+      orderConfirmTime: 2020-11-11 18:00:00
+      orderType: JYCK
+      outBizCode: shenyi_xdb - 201105220000001
+    packages:
+      p_0:
+        logisticsCode: SF
+        expressCode: SF1048734748612
+        weight: 0.489
+        extendProps:
+          postage: 0.000
+        items:
+          i_0:
+            itemCode: SAJH047
+            quantity: 2
+    orderLines:
+      o_0:
+        itemCode: SAJH047
+        inventoryType: ZP
+        actualQty: 2
+        batchs:
+          batch:
+            batchCode: L128
+            expireDate: 2022-11-11 18:00:00
+            actualQty: 200
+            inventoryType: ZP
+

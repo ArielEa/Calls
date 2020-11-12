@@ -8,7 +8,6 @@ namespace Call\Request;
  */
 class ResultSet
 {
-
     /**
      * 错误码
      **/
