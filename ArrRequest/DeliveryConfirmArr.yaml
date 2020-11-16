@@ -10,24 +10,34 @@ delivery:
       orderType: JYCK
       outBizCode: shenyi_xdb - 201105220000001
     packages:
-      p_0: # package
+      0: # package
         logisticsCode: SF
         expressCode: SF1048734748612
         weight: 0.489
         extendProps:
           postage: 0.000
         items:
-          i_0: #item
+          0: #item
             itemCode: SAJH047
             quantity: 2
+          1:
+            itemCode: SAJH047
+            quantity: muti_goods
     orderLines:
-      o_0: # orderLine
+      0: # orderLine
         itemCode: SAJH047
         inventoryType: ZP
         actualQty: 2
         batchs:
-          b_0: # batch
+          0: # batch
             batchCode: L128
+            productDate: 2020-11-11 00:00:00
+            expireDate: 2022-11-11 18:00:00
+            actualQty: 200
+            inventoryType: ZP
+          1: # batch
+            batchCode: L129
+            productDate: 2020-11-11 00:00:00
             expireDate: 2022-11-11 18:00:00
             actualQty: 200
             inventoryType: ZP

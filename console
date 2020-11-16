@@ -7,10 +7,14 @@ include_once "Enum/Enum.php";
 
 use Call\Conf\Config;
 use Call\Enum\Enum;
+use Call\HttpFoundation\JsonResponse;
 use Call\Object\DeliveryOrder;
 use Call\Object\EntryOrder;
 
-(new Config())->loadConf('Web/AppMethod.php');
+$AppKernel = new Config();
+$AppKernel->loadConf('Web/AppMethod.php');
+$AppKernel->loadConf('HttpFoundation/Response.php');
+$AppKernel->loadConf('HttpFoundation/JsonResponse.php');
 # 获取 method 值
 $method = php_sapi_name() == 'cli' ? $argv[1] : $_GET['method'];
 
@@ -19,11 +23,11 @@ include_once DIR_PATH."/Object/DeliveryOrder.php";
 
 switch ($method) {
     case Enum::$delivery:
-        $res = (new DeliveryOrder())->confirm($method);
+        $res = (new DeliveryOrder())->confirm( $method );
         break;
 
     case Enum::$inStock:
-        $res = (new EntryOrder())->confirm($method);
+        $res = (new EntryOrder())->confirm( $method );
         break;
 
     case Enum::$outStock:
@@ -37,5 +41,5 @@ switch ($method) {
     default:
         throw new \Exception("Invalid Status");
 }
-
-print_r($res);
+// 返回结果是数组，用JsonResponse
+return new JsonResponse($res);

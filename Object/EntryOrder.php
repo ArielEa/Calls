@@ -53,8 +53,20 @@ class EntryOrder extends HttpCurl
         $resp = [];
         foreach ( $req as $value ) {
             $XML = convertXml($value);
-            $resp[] = $this->sendRequest($XML, 'post');
+            $resXml = $this->sendRequest($XML, 'post');
+            $resData = $this->convertXml($resXml);
+            $resp[] = $resData;
         }
         return $resp;
+    }
+
+    /**
+     * @param $xml
+     * @return array
+     * @throws \Exception
+     */
+    protected function convertXml($xml): array
+    {
+        return parseXml($xml);
     }
 }

@@ -43,31 +43,31 @@ class DeliveryOrder extends HttpCurl
      * @return array|bool|mixed
      * @throws \Exception
      */
-    public function confirm($method)
+    public function confirm($method):array
     {
         $xmlData = $this->requestData($method);
-        $req = $this->combineUrl( self::$method )
-            ->postData( $xmlData, new DeliveryPost() );
-
-        print_r( $req );
-        die;
-
+        $req = $this->combineUrl( self::$method )->postData( $xmlData, new DeliveryPost() );
         $resp = [];
         foreach ( $req as $value ) {
-            $XML = convertXml($value);
-            $resp[] = $this->sendRequest($XML, 'post');
+            $XML = convertXml($value, 'orderLine',true);
+            $resXml = $this->sendRequest($XML, 'post');
+            $resData = $this->convertXml($resXml, $value['deliveryOrder']['deliveryOrderCode']);
+            $resp[] = $resData;
         }
         return $resp;
-
-        return $this->combineUrl(self::$method)->sendRequest($xml, 'post');
     }
 
     /**
-     * @return string
+     * @param $xml
+     * @param $code
+     * @return array
+     * @throws \Exception
      */
-    protected function convertXml(): string
+    protected function convertXml($xml, $code): array
     {
-        return "123";
+        $parseData = parseXml($xml);
+        $parseData['response_code'] = $code;
+        return $parseData;
     }
 }
 
