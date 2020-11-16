@@ -35,7 +35,6 @@ class EntryOrder extends HttpCurl
     protected function requestData($method)
     {
         $paraFile = Enum::getPara($method);
-
         return getParameters($method, $paraFile);
     }
 
@@ -54,7 +53,7 @@ class EntryOrder extends HttpCurl
         foreach ( $req as $value ) {
             $XML = convertXml($value);
             $resXml = $this->sendRequest($XML, 'post');
-            $resData = $this->convertXml($resXml);
+            $resData = $this->convertXml($resXml, $value['entryOrder']['entryOrderCode']);
             $resp[] = $resData;
         }
         return $resp;
@@ -62,11 +61,14 @@ class EntryOrder extends HttpCurl
 
     /**
      * @param $xml
+     * @param $code
      * @return array
      * @throws \Exception
      */
-    protected function convertXml($xml): array
+    protected function convertXml($xml, $code): array
     {
-        return parseXml($xml);
+        $parseData =  parseXml($xml);;
+        $parseData['response_code'] = $code;
+        return $parseData;
     }
 }
