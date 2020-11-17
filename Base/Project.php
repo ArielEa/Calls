@@ -66,6 +66,7 @@ if (!function_exists('parseXml')) {
     {
         if (!xml_parse(xml_parser_create(), $data, true)) {
             print_r( $data );
+            echo PHP_EOL;
             return ['code' => 500, 'flag' => 'failure', 'message' => '请输入正确的XML数据'];
         }
         return xmlToArray( $data );

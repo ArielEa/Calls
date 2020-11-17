@@ -1,23 +1,62 @@
 ## 默认支持批量，但是最大数量不能超过10个
 ## 需要引入excel用来导入执行
-inStock:
+outStock:
   0:
-    entryOrderCode: E2020110982903
+    deliveryOrder:
+      deliveryOrderCode: A202011176755
+      deliveryOrderId: CK202011131406
       warehouseCode: shenyi_xdb
-      entryOrderType: QTRK
-      products:
-        0:
-          itemCode: FBAV039
-          actualQty: 100
-          inventory: ZP
-          batch: null
-        1:
-          itemCode: FBAV040
-          actualQty: 100
-          inventory: ZP
-          batch: null
-        2:
-          itemCode: FBAV041
-          actualQty: 100
-          inventory: ZP
-          batch: null
+      ownerCode: SELF
+      outBizCode: CK202011131406
+      orderType: DBCK
+      status: DELIVERED
+      orderConfirmTime: 2020-11-16 19:26:14
+      logisticsCode: SF
+      expressCode: 437171998665
+    packages:
+      0: # package
+        items:
+          0: # item
+            itemCode: SCAL025
+            quantity: 30
+          1:
+            itemCode: SCAL024
+            quantity: 30
+          2:
+            itemCode: SCAL023
+            quantity: 30
+    orderLines:
+      0: # orderLine
+        itemCode: SCAL025
+        inventoryType: ZP
+        actualQty: 30
+        batchs:
+          0: # batch
+            batchCode: 200112
+            productDate: 2020-01-01 00:00:00
+            expireDate: 2023-01-01 00:00:00
+            actualQty: 30
+            inventoryType: ZP
+      1:
+        itemCode: SCAL024
+        inventoryType: ZP
+        actualQty: 30
+        batchs:
+          0: # batch
+            batchCode: 200112
+            productDate: 2020-01-01 00:00:00
+            expireDate: 2023-01-01 00:00:00
+            actualQty: 30
+            inventoryType: ZP
+      2:
+        itemCode: SCAL023
+        inventoryType: ZP
+        actualQty: 30
+        batchs:
+          0: # batch
+            batchCode: 200112
+            productDate: 2020-01-01 00:00:00
+            expireDate: 2023-01-01 00:00:00
+            actualQty: 17
+            inventoryType: ZP
+

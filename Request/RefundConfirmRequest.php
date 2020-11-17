@@ -11,6 +11,8 @@ class RefundConfirmRequest
 {
     private $returnOrder;
 
+    private $senderInfo;
+
     private $orderLines;
 
     private $extendProps;
@@ -32,6 +34,23 @@ class RefundConfirmRequest
     {
         $this->returnOrder = $returnOrder;
         $this->apiParas['returnOrder'] = $returnOrder;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenderInfo()
+    {
+        return $this->senderInfo;
+    }
+
+    /**
+     * @param mixed $senderInfo
+     */
+    public function setSenderInfo($senderInfo): void
+    {
+        $this->senderInfo = $senderInfo;
+        $this->apiParas['senderInfo'] = $senderInfo;
     }
 
     /**

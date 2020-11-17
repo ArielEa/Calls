@@ -6,6 +6,9 @@
  */
 namespace Call\Conf;
 
+use Call\HttpFoundation\JsonResponse;
+use Call\HttpFoundation\Response;
+
 define("DIR_PATH", __DIR__."/../");
 
 include_once "Color.php";
@@ -15,25 +18,23 @@ $methodArr = ['delivery', 'inStock', 'outStock', 'refund'];
 if (php_sapi_name() == 'cli') {
     // 命令行模式
     $argv = $GLOBALS['argv'];
-    $method = trim($argv[1]);
+    $method = isset($argv[1]) ? trim($argv[1]) : '';
     if ($method == '-h') {
         $message = "当前可选择的状态\n发货单     : delivery\n入库单     : inStock\n出库单     : outStock\n退货入库单 : refund";
-        print_r(colorize($message, 'WARNING'));
-        die(null);
+        return new Response(colorize($message, 'WARNING'));
     }
     if (!$method) {
-        print_r(colorize("请输入状态",'FAILURE'));die(null);
+        return new Response(colorize("请输入状态",'FAILURE'));
     }
     if (!in_array($method, $methodArr)) {
-        print_r(colorize('', $method));
-        die(null);
+        return new Response(colorize('', $method));
     }
 } else {
     // 浏览器模式
     $method = $_GET['method'];
     if (!in_array($method, $methodArr)) {
-        echo "<span style='color: green'>============================</span><br/>";
-        echo "
+        $str =  "<span style='color: green'>============================</span><br/>";
+        $str .= "
 <div style='background: green; width: 252px; height: auto;'>
     <div style='margin-left: 20px; padding: 5px 0 5px 0; font-weight: bold;font-size: 14px'>
         <p>状态错误,当前可选状态有：</p>
@@ -43,7 +44,7 @@ if (php_sapi_name() == 'cli') {
         <p>退货入库单 : refund</p>
     </div>
 </div>";
-        echo "<span style='color: green'>============================</span>";
-        die(null);
+        $str .= "<span style='color: green'>============================</span>";
+        return new Response($str);
     }
 }

@@ -1,23 +1,28 @@
 ## 默认支持批量，但是最大数量不能超过10个
 ## 需要引入excel用来导入执行
-inStock:
+refund:
   0:
-    entryOrderCode: E2020110982903
+    returnOrder:
+      returnOrderCode: 202011055361000011
+      returnOrderId: 202011055361000011
       warehouseCode: shenyi_xdb
-      entryOrderType: QTRK
-      products:
-        0:
-          itemCode: FBAV039
-          actualQty: 100
-          inventory: ZP
-          batch: null
-        1:
-          itemCode: FBAV040
-          actualQty: 100
-          inventory: ZP
-          batch: null
-        2:
-          itemCode: FBAV041
-          actualQty: 100
-          inventory: ZP
-          batch: null
+      orderType: THRK
+      expressCode: 215764899803
+    senderInfo:
+      name: 黄肉肉
+      mobile: 18678787000
+      province: 山东省
+      city: 济南市
+      detailAddress: 舜华路街道经十路9777号国奥城3号楼6楼
+    orderLines:
+      0: # orderLine
+        itemCode: FBAV045
+        inventoryType: ZP
+        actualQty: 1
+        batchs:
+          0: # batch
+            batchCode: 200112
+            productDate: 2020-01-01 00:00:00
+            expireDate: 2023-01-01 00:00:00
+            actualQty: 1
+            inventoryType: ZP
