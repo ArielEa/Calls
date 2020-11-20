@@ -65,8 +65,8 @@ if (!function_exists('parseXml')) {
     function parseXml( $data)
     {
         if (!xml_parse(xml_parser_create(), $data, true)) {
-            print_r( $data );
-            echo PHP_EOL;
+//            print_r( $data );
+//            echo PHP_EOL;
             return ['code' => 500, 'flag' => 'failure', 'message' => '请输入正确的XML数据'];
         }
         return xmlToArray( $data );
@@ -83,7 +83,6 @@ if (!function_exists('xmlToArray')) {
     {
         //禁止引用外部xml实体
         libxml_disable_entity_loader(true);
-        $values = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
-        return $values;
+        return json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
     }
 }

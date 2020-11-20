@@ -12,6 +12,8 @@ abstract class Enum
 
     public static $refund = 'refund';
 
+    public static $excel = "excel"; // Excel导入
+
     private static $paraFile = 'Conf/Parameters.yaml';
 
     ## 文件处理部分

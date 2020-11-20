@@ -3,7 +3,7 @@
  * - [ 处理配置文件 ]
  * @author Ariel.
  */
-include_once DIR_PATH."Conf/Spyc.php";
+include_once "Conf/Spyc.php";
 
 if (!function_exists('getParameters')) {
     /**

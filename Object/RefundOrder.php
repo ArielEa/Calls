@@ -3,10 +3,7 @@
 namespace Call\Object;
 
 include_once DIR_PATH."/HttpCurl/HttpCurl.php";
-include_once DIR_PATH."Parameters.php";
-include_once DIR_PATH."Enum/Enum.php";
 include_once DIR_PATH."Post/RefundPost.php";
-include_once DIR_PATH."Base/Project.php";
 
 use Call\Enum\Enum;
 use Call\HttpCurl\HttpCurl;
@@ -38,6 +35,12 @@ class RefundOrder extends HttpCurl
         return getParameters($method, $paraFile);
     }
 
+    /**
+     * 退货入库单确认处理
+     * @param $method
+     * @return array
+     * @throws \Exception
+     */
     public function confirm( $method ): array
     {
         $xmlData = $this->getRequestData($method);
@@ -53,6 +56,7 @@ class RefundOrder extends HttpCurl
     }
 
     /**
+     * 转换退货入库单的处理结果
      * @param $xml
      * @param $code
      * @return array
@@ -60,7 +64,7 @@ class RefundOrder extends HttpCurl
      */
     protected function convertXml($xml, $code): array
     {
-        $parseData = parseXml($xml);
+        $parseData = parseXml(trim($xml));
         $parseData['response_code'] = $code;
         return $parseData;
     }
