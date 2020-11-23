@@ -10,6 +10,7 @@ use Call\Object\DeliveryOrder;
 use Call\Object\EntryOrder;
 use Call\Object\OutStockOrder;
 use Call\Object\RefundOrder;
+use Call\Object\Warehouse;
 
 $AppKernel = new Config();
 $AppKernel->loadConf('Enum/Enum.php');
@@ -41,6 +42,12 @@ switch ($method) {
         $AppKernel->loadConf("Object/RefundOrder.php");
         $object = new RefundOrder();
         break;
+
+	case Enum::$warehouse:
+		$AppKernel->loadConf("Object/Warehouse.php");
+		$object = new Warehouse();
+		$res = $object->getWarehouse();
+		return new JsonResponse($res);
 
     default:
         throw new \Exception("Invalid Status");

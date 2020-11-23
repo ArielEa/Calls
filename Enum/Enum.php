@@ -12,6 +12,8 @@ abstract class Enum
 
     public static $refund = 'refund';
 
+    public static $warehouse = 'warehouse';
+
     public static $excel = "excel"; // Excel导入
 
     private static $paraFile = 'Conf/Parameters.yaml';

@@ -13,14 +13,14 @@ define("DIR_PATH", __DIR__."/../");
 
 include_once "Color.php";
 
-$methodArr = ['delivery', 'inStock', 'outStock', 'refund'];
+$methodArr = ['delivery', 'inStock', 'outStock', 'refund', 'warehouse'];
 
 if (php_sapi_name() == 'cli') {
     // 命令行模式
     $argv = $GLOBALS['argv'];
     $method = isset($argv[1]) ? trim($argv[1]) : '';
     if ($method == '-h') {
-        $message = "当前可选择的状态\n发货单     : delivery\n入库单     : inStock\n出库单     : outStock\n退货入库单 : refund";
+        $message = "当前可选择的状态\n发货单     : delivery\n入库单     : inStock\n出库单     : outStock\n退货入库单 : refund\n获取最新仓库数据 : warehouse";
         return new Response(colorize($message, 'WARNING'));
     }
     if (!$method) {
@@ -42,6 +42,7 @@ if (php_sapi_name() == 'cli') {
         <p>入库单 : inStock</p>
         <p>出库单 : outStock</p>
         <p>退货入库单 : refund</p>
+        <p>获取仓库编码信息: warehouse</p>
     </div>
 </div>";
         $str .= "<span style='color: green'>============================</span>";

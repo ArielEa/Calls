@@ -1,5 +1,6 @@
 <?php
 /**
+ * 颜色
  * 命令行输出颜色设定
  */
 namespace Call\Conf;
