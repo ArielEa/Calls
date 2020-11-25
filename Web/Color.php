@@ -21,7 +21,7 @@ if (!function_exists('colorize')) {
                 $out = "\033[34m"; //Blue background
                 break;
             default:
-                $text = "Invalid Status: {$status}";
+                $text = "无效的识别类型: {$status}";
                 $out = "\033[31m";
                 break;
         }

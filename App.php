@@ -20,38 +20,45 @@ $AppKernel->loadConf('Parameters.php');
 $AppKernel->loadConf('Web/AppMethod.php');
 $AppKernel->loadConf('Base/Project.php');
 # 获取 method 值
-$method = php_sapi_name() == 'cli' ? $argv[1] : $_GET['method'];
-
+if (php_sapi_name() == 'cli') {
+    $transfersType = Enum::getTransferType($argv[1]);
+    $method = $argv[2];
+    $mode = 'cli';
+} else {
+    $transfersType = $_GET['transferType'];
+    $method = $_GET['method'];
+    $mode = 'webPage';
+}
 switch ($method) {
-    case Enum::$delivery:
+    case Enum::DELIVERY:
         $AppKernel->loadConf("Object/DeliveryOrder.php");
         $object = new DeliveryOrder();
         break;
 
-    case Enum::$inStock:
+    case Enum::IN_STOCK:
         $AppKernel->loadConf("Object/EntryOrder.php");
         $object = new EntryOrder();
         break;
 
-    case Enum::$outStock:
+    case Enum::OUT_STOCK:
         $AppKernel->loadConf("Object/OutStockOrder.php");
         $object = new OutStockOrder();
         break;
 
-    case Enum::$refund:
+    case Enum::REFUND:
         $AppKernel->loadConf("Object/RefundOrder.php");
         $object = new RefundOrder();
         break;
 
-	case Enum::$warehouse:
+	case Enum::WAREHOUSE:
 		$AppKernel->loadConf("Object/Warehouse.php");
 		$object = new Warehouse();
 		$res = $object->getWarehouse();
 		return new JsonResponse($res);
 
     default:
-        throw new \Exception("Invalid Status");
+        throw new \Exception("无效的请求");
 }
-$res = $object->confirm($method);
+$res = $object->confirm($method, $transfersType, $mode);
 // 返回结果是数组，用JsonResponse
 return new JsonResponse($res);

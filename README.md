@@ -32,8 +32,9 @@
         出库单     : outStock
         退货入库单 : refund
         
-        例如： ./console delivery 
-        帮助： ./console -h
+        帮助： ./console -h `无需参数后缀`
+        配置读取: ./console -p delivery
+        excel读取: ./console -e delivery
 
     4)、树状结构（文件夹形式）
     

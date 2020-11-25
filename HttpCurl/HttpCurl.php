@@ -68,7 +68,6 @@ class HttpCurl implements ApiRequest
 
     /**
      * @param $data
-     * @param $url
      * @param string $requestType
      * @return bool|string
      */

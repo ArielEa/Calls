@@ -49,7 +49,7 @@ class RefundOrder extends HttpCurl
         foreach ( $req as $value ) {
             $XML = convertXml($value, 'orderLine',true);
             $resXml = $this->sendRequest($XML, 'post');
-            $resData = $this->convertXml($resXml, $value['returnOrder']['returnOrderCode']);
+            $resData = $this->convertXml($resXml, (string)$value['returnOrder']['returnOrderCode']);
             $resp[] = $resData;
         }
         return $resp;

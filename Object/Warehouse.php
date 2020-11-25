@@ -51,13 +51,15 @@ class Warehouse
         }
         $result = json_decode($res, true);
 
-        if ($result['errCode'] != 0) {
+        if (isset($result['errCode']) && $result['errCode'] != 0) {
             return ['code' => 50, 'flag' => 'failure', 'msg' => $result['errMsg']];
+        } else if (isset($result['code']) && $result['code'] == 401) {
+            return ['code' => 50, 'flag' => 'failure', 'msg' => $result['message']];
         }
         $warehouse = [];
         // 获取需要的仓库信息
         foreach ( $result['payload'] as $key => $value ) {
-            $warehouse[] = [
+            $warehouse[$value['warehouse_name']] = [
                 'warehouse_name' => $value['warehouse_name'],
                 'warehouse_code' => $value['warehouse_bn']
             ];

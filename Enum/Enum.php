@@ -4,17 +4,15 @@ namespace Call\Enum;
 
 abstract class Enum
 {
-    public static $delivery = 'delivery';
+    const  DELIVERY = 'delivery';
 
-    public static $inStock = 'inStock';
+    const IN_STOCK = 'inStock';
 
-    public static $outStock = 'outStock';
+    const OUT_STOCK = 'outStock';
 
-    public static $refund = 'refund';
+    const REFUND = 'refund';
 
-    public static $warehouse = 'warehouse';
-
-    public static $excel = "excel"; // Excel导入
+    const WAREHOUSE = 'warehouse';
 
     private static $paraFile = 'Conf/Parameters.yaml';
 
@@ -25,6 +23,46 @@ abstract class Enum
         'delivery'  => 'ArrRequest/DeliveryConfirmArr.yaml',
         'refund'    => 'ArrRequest/RefundConfirmArr.yaml'
     ];
+
+    /**
+     * 商品正残属性
+     * @var string[]
+     */
+    public static $inventory = [
+        '正品' => 'ZP',
+        '残品' => 'CC'
+    ];
+
+    ## 传输类型
+    const Excel = 'Excel'; // excel 文件
+
+    const Help = 'Help'; // 帮助类型
+
+    const Parameters = "Parameters"; // 配置读取类型
+
+    /**
+     * 枚举 - 传输类型
+     * @var string[]
+     */
+    private static $transferType = [
+        '-e' => self::Excel,
+        '-h' => self::Help,
+        '-p' => self::Parameters
+    ];
+
+    /**
+     * 需要的文件传递类型
+     * @param $key
+     * @return string
+     */
+    public static function getTransferType($key): string
+    {
+        if (isset(self::$transferType[$key])) {
+            return self::$transferType[$key];
+        } else {
+            return '';
+        }
+    }
 
     /**
      * 返回对应的文件

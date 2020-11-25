@@ -2,23 +2,161 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>首页</title>
+    <title>首页 - 选择</title>
     <link rel="stylesheet" type="text/css" href="Web/Style/iview.css">
     <script type="text/javascript" src="Web/Style/vue.min.js"></script>
     <script type="text/javascript" src="Web/Style/iview.min.js"></script>
+    <script type="text/javascript" src="Web/Style/jq.min.js"></script>
+    <script type="text/javascript" src="Web/Style/vue-resource.min.js"></script>
 </head>
 <body>
 <div id="app">
-    <i-button @click="switchOn" v-show="visible">Click me!</i-button>
+    <div class="mainObject">
+        <i-select v-model="method" style="width:200px">
+            <i-option value="delivery" label="发货单">
+                <span>发货单</span>
+                <span style="float:right;color:#ccc">delivery</span>
+            </i-option>
+            <i-option value="inStock" label="入库单">
+                <span>入库单</span>
+                <span style="float:right;color:#ccc">inStock</span>
+            </i-option>
+            <i-option value="outStock" label="出库单">
+                <span>出库单</span>
+                <span style="float:right;color:#ccc">outStock</span>
+            </i-option>
+            <i-option value="refund" label="退货入库单">
+                <span>退货入库单</span>
+                <span style="float:right;color:#ccc">refund</span>
+            </i-option>
+        </i-select>
+        <!-- 配置选择 -->
+        <i-button @click="paraRead">读取配置</i-button>
+        <i-button @click="excelRead">传输文件</i-button>
+        <!-- 文件上传部分 -->
+        <div v-show="uploadVisible">
+            <Upload
+                    :before-upload="handleUpload"
+                    action="http://localhost"
+                    style="margin-top: 20px">
+                <i-button icon="ios-cloud-upload-outline">选择需要上传的文件</i-button>
+            </Upload>
+            <div v-if="file !== null">
+                上传文件: {{ file.name }}
+                <i-button @click="upload" :loading="loadingStatus">
+                    {{ loadingStatus ? 'Uploading' : '点击上传' }}
+                </i-button>
+            </div>
+        </div>
+        <!-- 文件部分结束 -->
+        <!-- 配置读取部分 -->
+        <div v-show="paraVisible" style="margin-top: 20px">
+            <i-button @click="sendRequest" :loading="loadingStatus">
+                任务读取
+            </i-button>
+        </div>
+        <!-- 配置读取部分 -->
+
+         <!-- 结果展示部分 -->
+        <div v-show="tableVisible" style="margin-top: 20px">
+            <i-table :columns="columns" :data="responseData"></i-table>
+        </div>
+         <!-- 结果展示部分 -->
+    </div>
 </div>
+<style>
+    .mainObject {
+        width: 800px;
+        height:400px;
+        text-align: center;
+        position: absolute;
+        left: 20%;
+        top:20%
+    }
+</style>
 <script>
     new Vue({
         el: '#app',
         data: {
-            visible: true
+            paraVisible: false,
+            uploadVisible: false,
+            tableVisible: false,
+            method: '',
+            file: null,
+            loadingStatus: false,
+            paraLoading: false,
+            mode: 'webPage',
+            transferType: '',
+            fileData: [],
+            address: "http://localhost/MethodRequest/Call/Cli.php?",
+            columns: [
+                {
+                    title: '单号',
+                    key: 'response_code',
+                    width: 200
+                },
+                {
+                    title: '结果',
+                    key: 'flag',
+                    width: 100
+                },
+                {
+                    title: '信息',
+                    key: 'message'
+                }
+            ],
+            responseData: []
         },
         methods: {
-            switchOn() {
+            paraRead() {
+                if (!this.method) {
+                    return this.$Message.warning("请选择数据类型")
+                }
+                this.uploadVisible = false
+                this.paraVisible = true
+                this.transferType = 'Parameters'
+            },
+            excelRead() {
+                if (!this.method) {
+                    return this.$Message.warning("请选择数据类型")
+                }
+                this.uploadVisible = true
+                this.paraVisible = false
+                this.transferType = 'Excel'
+            },
+            handleUpload (file) {
+                this.file = file;
+                return false;
+            },
+            // 文件上传
+            upload () {
+                this.loadingStatus = true;
+                let formData = new FormData();
+                formData.append("excelFile", this.file);
+                let url = this.getRemoteUrl();
+                this.$Message.warning('发送任务中，请稍等')
+                this.$http.post(url, formData).then(res => {
+                    this.loadingStatus = false
+                    this.responseData = res.data
+                    this.tableVisible = true
+                    this.$Message.success('信息发送成功')
+                });
+            },
+            // 配置读取， 自己写配置文件
+            sendRequest() {
+                this.loadingStatus = true
+                let url = this.getRemoteUrl()
+                this.$Message.warning('发送任务中，请稍等')
+                this.$http.get(url, {}).then(res => {
+                    this.loadingStatus = false
+                    this.responseData = res.data
+                    this.tableVisible = true
+                    this.$Message.success('信息发送成功')
+                });
+            },
+            getRemoteUrl() {
+                // 获取发送的url地址
+                return this.address+"mode="+this.mode+"&method="+this.method+"&transferType="+this.transferType
             }
         }
     })
