@@ -25,6 +25,7 @@
     2)、请求方式
          ./console
          php console
+         http://目录/index.html
      
     3)、 参数说明
         发货单     : delivery
